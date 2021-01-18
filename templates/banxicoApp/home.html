@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+<!--  -->
+{% block content %}
+<div class="tab-content" id="myTabContent">
+  
+    
+  
+</div>
+<h2>Consultar UDIS </h2>
+
+<div class="col-md-12 col-sm-12 col-lg-12  col-auto">
+  <div class="input-group date" id="" data-target-input="nearest">
+    
+    <form method = "GET"> 
+      Fecha inicio:
+      {{ form.fecha_ini }} 
+      Fecha fin:
+      {{ form.fecha_fin }} 
+      <input type = "submit" value = "Submit"> 
+    </form> 
+
+    <!-- <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+    </div>
+  </br>
+    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
+      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+    </div> -->
+  </div>
+  <!-- <div class="daterangepicker-container mcast-search-filter">                                                                             
+    <div class="daterangepicker-label">Date range:
+      <input type="text" name="daterange"  value="01/01/2018 - 01/15/2018"  />    
+    </div>                                                                                
+                                                                                                                         
+  </div>                                                                                                                                  
+  <div class="hide">From {{ daterange_form.start_date }} to {{ daterange_form.end_date }}</div>
+
+   -->
+  <div class="card">
+    Estadistica 
+    media {{stats.mean}} valor minimo {{stats.min}} valor maximo {{stats.max}}
+    <div class="card-header"></div>
+      Todos
+      {{error}}
+      <table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+              {% for key,values in keys %}
+                <th>{{key}}</th>            
+              {% endfor %}            
+               
+            </tr>
+        </thead>
+        <tbody>
+       {% for d in datos %}
+          <tr>
+             {% for key,values in d.items %}
+                <td>{{values}}</td>
+             {% endfor %}
+          </tr>
+      {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+              <th>Fecha</th>
+              <th>Valor udis</th>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
+    
+   
+    <!-- <ul class="list-group list-group-flush">
+      {% for todo in data %}
+      +
+
+      <li class="list-group-item">{{ todo.id }} - {{ todo.title }}- {{todo.completed}} </li>
+      {% endfor %} -->
+    <!-- </ul> -->
+  </div>
+  {% autoescape off %}
+  {{ plot_div }}
+  {% endautoescape %}
+</div>
+<script>
+    
+
+  $(function () {
+    $("#id_fecha_ini").datepicker({
+      format: 'YYYY-MM-DD',
+    });
+    $("#id_fecha_fin").datepicker({
+      format: 'YYYY-MM-DD',
+    });
+    $('#example').DataTable();
+
+    // $("#daterange").daterangepicker({
+    //     locale: {
+    //       format: 'YYYY-MM-DD'
+    //     },
+    //     startDate: '{{daterange_form.start_date.value}}',
+    //     endDate: '{{daterange_form.end_date.value}}'
+    // });
+    // $('input[name="daterange"]').daterangepicker({
+    //   opens: 'left'
+    // }, function(start, end, label) {
+    //     console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    // });
+    
+
+  });
+</script>
+{% endblock content %}
