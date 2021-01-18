@@ -2,6 +2,17 @@ import requests
 myToken= 'f796952bfda108d85c0c39bc01497f40a9825ba9b5421033c77b0f9ba4fb783d'
 
 def generate_request(params):
+    """
+        Funcion para hacer request a la api de banxico
+        Dependencias : requests
+        Parametros:
+            - fecha_i: fecha inicial
+            - fecha_f: fecha final
+            - seris: numero de serie o series de los catalogos a consultar
+        Returns:
+            Response: regrea un json obtenido del reponse a la api. 
+    """
+    
     headers = {'Bmx-Token': myToken}
   
 
@@ -11,15 +22,17 @@ def generate_request(params):
         series=params.get("serie")
     )
     
-    #headers={'Authorization': 'access_token myToken'})
-    # payload = {'datos':fecha_i,fecha_f}
-    #url2= "https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP74665,SF61745,SF60634,SF43718,SF43773/datos/2020-01-01/2020-01-08"
+   
     response = requests.get(url_udis, headers=headers)    
-    #import pdb; pdb.set_trace()
+   
     if response.status_code == 200:
         return response.json()
 
 def get_series(params):
+    """
+        Funcion para retornar la serie en forma de diccionario
+        
+    """
     response = generate_request(params)
     if response:
        serie = response.get('bmx')
