@@ -10,7 +10,7 @@ def generate_request(params):
         fecha_f=params.get("fecha_fin"),
         series=params.get("serie")
     )
-    import pdb; pdb.set_trace()
+    
     #headers={'Authorization': 'access_token myToken'})
     # payload = {'datos':fecha_i,fecha_f}
     #url2= "https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP74665,SF61745,SF60634,SF43718,SF43773/datos/2020-01-01/2020-01-08"

@@ -58,7 +58,7 @@ def home(requests):
                                 }
             context['datos']= df.to_dict('records')
             context['keys'] =  context['datos'][0].items()
-        import pdb; pdb.set_trace()
+        
     
     return render(requests, 'banxicoApp/home.html', context)
 
@@ -68,7 +68,7 @@ def graficarCurva(df,isTIIE=False):
     """
         Funcionm para graficar
     """
-    import pdb; pdb.set_trace()
+    
    
 
     if isTIIE:# agregar n lineas de los tipos de series  
@@ -103,14 +103,14 @@ def graficarCurva(df,isTIIE=False):
 
     plot_div = plot(fig,
                output_type='div')
-    import pdb;pdb.set_trace()
+
     return plot_div
 
 
 
 def serie_tiie(requests):
     context = {}
-    import pdb; pdb.set_trace()
+    
     context['form'] = DateForm()
     if requests.GET: 
         fecha_ini = requests.GET['fecha_ini']
@@ -131,7 +131,7 @@ def serie_tiie(requests):
             
             df1 = df1.rename(columns={'fecha':'fecha_21dias','dato':'dato_SF60648'})
             df2 = df2.rename(columns={'fecha':'fecha_91dias','dato':'dato_SF60649'})
-            import pdb; pdb.set_trace()
+            
             df1['dato_SF60648'] = pd.to_numeric(df1['dato_SF60648'])
             df2['dato_SF60649'] = pd.to_numeric(df2['dato_SF60649'])
             df1['fecha_21dias'] = pd.to_datetime(df1['fecha_21dias'],dayfirst=True).dt.strftime('%Y-%m-%d')
@@ -153,11 +153,11 @@ def serie_tiie(requests):
             
             context['datos'] = result_f.to_dict('records')
             context['keys'] =  context['datos'][0].items()
-        import pdb;pdb.set_trace()
+       
     return render(requests, 'banxicoApp/tiee.html', context)
 
 def serie_dolar(requests):
-    import pdb; pdb.set_trace()
+    
     context = {}
     context['form'] = DateForm()
 
@@ -187,5 +187,5 @@ def serie_dolar(requests):
                                 }
             context['datos']= df.to_dict('records')
             context['keys'] =  context['datos'][0].items()
-            import pdb;pdb.set_trace()
+            
     return render(requests, 'banxicoApp/dolar.html', context)
